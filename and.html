@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Two Options</title>
+    <style>
+      .option {
+        display: inline-block;
+        padding: 10px;
+        margin: 10px;
+        background-color: #eee;
+        cursor: pointer;
+      }
+      .option:hover {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Choose an option:</h1>
+    <div class="option" id="option1" onclick="selectOption('option1')">Option 1</div>
+    <div class="option" id="option2" onclick="selectOption('option2')">Option 2</div>
+    <script>
+      function selectOption(optionId) {
+        var optionElement = document.getElementById(optionId);
+        optionElement.style.backgroundColor = '#f00';
+        alert('You selected ' + optionElement.textContent);
+      }
+    </script>
+  </body>
+</html>

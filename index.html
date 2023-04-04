@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<title>Chatbot Example</title>
+	<!-- Add CSS styling for the chatbot icon and interface -->
+	<style>
+		#chatbot-icon {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			width: 50px;
+			height: 50px;
+			background-color: #555;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+		#chatbot-icon:hover {
+			background-color: #666;
+		}
+		
+		#chatbot {
+			position: fixed;
+			bottom: 20px;
+			right: 70px;
+			width: 350px;
+			background-color: white;
+			box-shadow: 0px 0px 10px #888;
+			display: none;
+		}
+		#chatbot-header {
+			background-color: #555;
+			color: white;
+			padding: 10px;
+		}
+		#chatbot-body {
+			padding: 10px;
+		}
+		#chatbot-message {
+			margin-bottom: 10px;
+		}
+		#chatbot-input {
+			width: 100%;
+			box-sizing: border-box;
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	<!-- Add the chatbot icon as a button -->
+	<button id="chatbot-icon">
+		<!-- Add an icon to the button, such as a chat bubble -->
+		<i class="fa fa-comment"></i>
+	</button>
+	
+	<!-- Add HTML elements to display the chatbot interface -->
+	<div id="chatbot">
+		<div id="chatbot-header">
+			Chatbot
+		</div>
+		<div id="chatbot-body">
+			<div id="chatbot-message">Hey! How can I help you?</div>
+			<input id="chatbot-input" type="text" placeholder="Type your answer here">
+		</div>
+	</div>
+	
+	<!-- Add JavaScript to display the chatbot interface when the button is clicked and handle user input -->
+	<script>
+		var button = document.getElementById("chatbot-icon");
+		var chatbot = document.getElementById("chatbot");
+		var message = document.getElementById("chatbot-message");
+		var input = document.getElementById("chatbot-input");
+		
+		button.addEventListener("click", function() {
+			chatbot.style.display = "block";
+			input.focus();
+		});
+		
+		input.addEventListener("keypress", function(e) {
+			if (e.keyCode === 13) {
+				message.innerHTML = "You said: " + input.value;
+				input.value = "";
+			}
+		});
+	</script>
+</body>
+</html>

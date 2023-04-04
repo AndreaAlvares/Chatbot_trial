@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Chatbot Example</title>
+    <!-- Add CSS styling for the chatbot icon -->
+    <style>
+        #chatbot-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #555;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        #chatbot-icon:hover {
+            background-color: #666;
+        }
+        #chatbot {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 40vw;
+            height: 50vh;
+            border: 1px solid black;
+            background-color: white;
+            display: none;
+        }
+        #chatbot-header {
+            background-color: #555;
+            color: white;
+            padding: 10px;
+        }
+        #chatbot-body {
+            padding: 10px;
+            height: calc(50vh - 70px);
+            overflow: auto;
+        }
+        #chatbot-message {
+            margin-bottom: 10px;
+        }
+        #chatbot-conversation {
+            margin-bottom: 10px;
+        }
+        #chatbot-input {
+            margin-top: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add the chatbot icon as a button -->
+    <button id="chatbot-icon">
+        <!-- Add an icon to the button, such as a chat bubble -->
+        <i class="fa fa-comment"></i>
+    </button>
+
+    <!-- Add HTML elements to display the chatbot interface -->
+    <div id="chatbot">
+        <div id="chatbot-header">Chatbot</div>
+        <div id="chatbot-body">
+            <div id="chatbot-message">Hey! How can I help you?</div>
+            <div id="chatbot-conversation"></div>
+            <input id="chatbot-input" type="text" placeholder="Type your answer here">
+        </div>
+    </div>
+
+    <!-- Add JavaScript to display the chatbot interface when the button is clicked -->
+
+
+
+
+    <script>
+		var button = document.getElementById("chatbot-icon");
+		var chatbot = document.getElementById("chatbot");
+		var message = document.getElementById("chatbot-message");
+		var conversation = document.getElementById("chatbot-conversation");
+		var input = document.getElementById("chatbot-input");
+		
+		// Define the questions and answers
+		var qa = {
+		  "what is your name?": "My name is Chatbot.",
+		  "what can you do?": "I can help you with your questions and problems.",
+		  "how are you?": "I'm doing well, thank you.",
+		  
+		  // add more questions and answers as needed
+		};
+	  
+		button.addEventListener("click", function() {
+		  chatbot.style.display = "block";
+		});
+		
+		input.addEventListener("keypress", function(e) {
+		  if (e.keyCode === 13) {
+			var userMessage = input.value.toLowerCase();
+			var chatbotMessage;
+			
+			// Check if the user's message matches one of the questions
+			if (qa[userMessage]) {
+			  chatbotMessage = qa[userMessage];
+			} else {
+			  chatbotMessage = "I'm sorry, I don't understand. Please ask another question.";
+			}
+			// chatbotMessage += "<br>"; // Add a line break before scrolling down
+			conversation.innerHTML += "<p><strong>You said:</strong> " + userMessage + "</p>" +
+									   "<p><strong>Chatbot:</strong> " + chatbotMessage + "</p>";
+			// Scroll to the bottom of the conversation
+            // conversation.scrollTop = conversation.scrollHeight - conversation.clientHeight;
+						   
+			// // Scroll to the bottom of the conversation
+			// conversation.scrollTop = conversation.scrollHeight;
+			// conversation.scrollTop = conversation.scrollHeight; // Scroll to the bottom of the conversation
+       
+ 
+			message.innerHTML = "Hey! How can I help you?"; 
+			input.value = "";
+			// Scroll to the bottom of the conversation
+            conversation.scrollTop = conversation.scrollHeight;
+		// 	setTimeout(function() {
+        //     conversation.scrollTop = conversation.scrollHeight;
+        // }, 500);
+		  }
+		});
+	  </script>
+	  
+	   
+
+
+
+
+
+
+
+</body>
+</html> 
+
+
+
+
+

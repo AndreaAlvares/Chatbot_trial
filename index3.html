@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Chatbot Example</title>
+    <!-- Add CSS styling for the chatbot icon -->
+    <style>
+        #chatbot-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #555;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        #chatbot-icon:hover {
+            background-color: #666;
+        }
+        #chatbot {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 40vw;
+            height: 50vh;
+            border: 1px solid black;
+            background-color: white;
+            display: none;
+        }
+        #chatbot-header {
+            background-color: #555;
+            color: white;
+            padding: 10px;
+        }
+        #chatbot-body {
+            padding: 10px;
+            height: calc(50vh - 70px);
+            overflow: auto;
+        }
+        #chatbot-message {
+            margin-bottom: 10px;
+        }
+        #chatbot-conversation {
+            margin-bottom: 10px;
+        }
+        .options {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+        .option-button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #555;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .option-button:hover {
+            background-color: #666;
+        }
+        .user-message {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add the chatbot icon as a button -->
+    <button id="chatbot-icon">
+        <!-- Add an icon to the button, such as a chat bubble -->
+        <i class="fa fa-comment"></i>
+    </button>
+
+    <!-- Add HTML elements to display the chatbot interface -->
+    <div id="chatbot">
+        <div id="chatbot-header">Chatbot</div>
+        <div id="chatbot-body">
+            <div id="chatbot-message">Hey! How can I help you?</div>
+            <div id="chatbot-conversation"></div>
+            <div id="chatbot-options" style="display:none;">
+                <p>Do you want to know more about women's rights in India?</p>
+                <div class="options">
+                    <button class="option-button" id="chatbot-yes">Yes</button>
+                    <button class="option-button" id="chatbot-no">No</button>
+                </div>
+            </div>
+            <input id="chatbot-input" type="text" placeholder="Type your answer here">
+        </div>
+    </div>
+
+    <!-- Add JavaScript to display the chatbot interface when the button is clicked -->
+
+    <script>
+        var button = document.getElementById("chatbot-icon");
+        var chatbot = document.getElementById("chatbot");
+        var message = document.getElementById("chatbot-message");
+        var conversation = document.getElementById("chatbot-conversation");
+        var input = document.getElementById("chatbot-input");
+        var options = document.getElementById("chatbot-options");
+        var yesButton = document.getElementById("chatbot-yes");
+        var noButton = document.getElementById("chatbot-no");
+        
+        // Add event listener to the chatbot icon
+button.addEventListener("click", function() {
+chatbot.style.display = "block";
+input.focus();
+});
+
+// Add event listener to the input field to process user input
+input.addEventListener("keydown", function(event) {
+if (event.keyCode === 13) { // If the user presses the Enter key
+var userMessage = input.value.trim();
+input.value = "";
+conversation.innerHTML += "<div class='user-message'>" + userMessage + "</div>";
+
+    // Process the user's message
+    if (userMessage.toLowerCase() === "yes") {
+        message.innerHTML = "Great! Women's rights in India is a vast topic. What specific area would you like to know more about?";
+        options.style.display = "none";
+    } else if (userMessage.toLowerCase() === "no") {
+        message.innerHTML = "Okay, let me know if you change your mind.";
+        options.style.display = "none";
+    } else {
+        message.innerHTML = "I'm sorry, I didn't understand your question. Do you want to know more about women's rights in India?";
+        options.style.display = "block";
+    }
+}
+});
+
+// Add event listener to the Yes button to display specific options
+yesButton.addEventListener("click", function() {
+message.innerHTML = "Great! Women's rights in India is a vast topic. What specific area would you like to know more about?";
+options.style.display = "none";
+});
+
+// Add event listener to the No button to end the conversation
+noButton.addEventListener("click", function() {
+message.innerHTML = "Okay, let me know if you change your mind.";
+options.style.display = "none";
+});
+</script>
+
+</body>
+</html>
